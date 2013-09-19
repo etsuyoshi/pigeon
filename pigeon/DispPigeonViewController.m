@@ -45,7 +45,7 @@
     //    [self.view addSubview:imageView];// UIImageViewのインスタンスをビューに追加
     
     //複数画像のアニメーション例
-    CGRect rect = CGRectMake(10, 50, 300, 300);
+    CGRect rect = CGRectMake(10, 50, 200, 200);//左上座標、幅、高さ
     UIImageView *iv = [[UIImageView alloc]initWithFrame:rect];
     iv.image = [UIImage imageNamed:@"sample1.jpg"];
     //    UIImageView *iv = [[UIImageView alloc] init];

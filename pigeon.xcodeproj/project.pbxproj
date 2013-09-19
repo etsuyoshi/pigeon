@@ -21,6 +21,7 @@
 		3477F75C17EAE0F900C87837 /* sample1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3477F75B17EAE0F900C87837 /* sample1.jpg */; };
 		3477F75E17EAE63100C87837 /* sample2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3477F75D17EAE63100C87837 /* sample2.png */; };
 		3477F76117EB0A8600C87837 /* DispPigeonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3477F76017EB0A8600C87837 /* DispPigeonViewController.m */; };
+		3477F76417EB100000C87837 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3477F76317EB100000C87837 /* ConfigViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		3477F75D17EAE63100C87837 /* sample2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample2.png; sourceTree = "<group>"; };
 		3477F75F17EB0A8600C87837 /* DispPigeonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispPigeonViewController.h; sourceTree = "<group>"; };
 		3477F76017EB0A8600C87837 /* DispPigeonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispPigeonViewController.m; sourceTree = "<group>"; };
+		3477F76217EB100000C87837 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		3477F76317EB100000C87837 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				3477F71B17E9A65D00C87837 /* MainStoryboard.storyboard */,
 				3477F71E17E9A65D00C87837 /* ViewController.h */,
 				3477F71F17E9A65D00C87837 /* ViewController.m */,
+				3477F76217EB100000C87837 /* ConfigViewController.h */,
+				3477F76317EB100000C87837 /* ConfigViewController.m */,
 				3477F75F17EB0A8600C87837 /* DispPigeonViewController.h */,
 				3477F76017EB0A8600C87837 /* DispPigeonViewController.m */,
 				3477F70A17E9A65D00C87837 /* Supporting Files */,
@@ -190,6 +195,7 @@
 				3477F71417E9A65D00C87837 /* AppDelegate.m in Sources */,
 				3477F72017E9A65D00C87837 /* ViewController.m in Sources */,
 				3477F76117EB0A8600C87837 /* DispPigeonViewController.m in Sources */,
+				3477F76417EB100000C87837 /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

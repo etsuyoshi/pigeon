@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller - title(仮)-->
+        <!--View Controller - タイトル(仮)-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
@@ -48,11 +48,10 @@
                             <constraint firstItem="Gvx-Tj-tC2" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="I54-s4-zrB"/>
                             <constraint firstItem="cSJ-U9-s2z" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="M04-41-gsZ"/>
                             <constraint firstItem="cSJ-U9-s2z" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="sD3-d0-au9"/>
-                            <constraint firstItem="cSJ-U9-s2z" firstAttribute="baseline" secondItem="Gvx-Tj-tC2" secondAttribute="baseline" type="default" id="vEG-R2-oBI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="title(仮)" prompt="テスト？" id="b0A-Of-Tga">
-                        <barButtonItem key="backBarButtonItem" title="戻りボタン" id="Mh8-eT-QUz"/>
+                    <navigationItem key="navigationItem" title="タイトル(仮)" prompt="初期画面" id="b0A-Of-Tga">
+                        <barButtonItem key="backBarButtonItem" title="タイトルに戻る" id="Mh8-eT-QUz"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -68,8 +67,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zG-ED-8SW">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="m62-e7-uIJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="戻る">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -80,32 +82,81 @@
                                     <action selector="myOnClickCloseButton:" destination="dPV-3P-FY4" eventType="touchUpInside" id="PhW-Je-ZMZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-Me-fpa">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAU-nV-5rc">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW2-av-SRV">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKa-Vk-8kR">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1zG-ED-8SW" firstAttribute="top" secondItem="nEV-rZ-7DC" secondAttribute="top" type="default" id="6i2-sb-g04"/>
+                            <constraint firstItem="OW2-av-SRV" firstAttribute="leading" secondItem="MAU-nV-5rc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AcB-fh-yBv"/>
+                            <constraint firstItem="MAU-nV-5rc" firstAttribute="leading" secondItem="Fl2-Me-fpa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="FZw-KH-mQn"/>
+                            <constraint firstItem="UKa-Vk-8kR" firstAttribute="top" secondItem="OW2-av-SRV" secondAttribute="top" type="default" id="QfU-7Y-Vn4"/>
+                            <constraint firstItem="OW2-av-SRV" firstAttribute="baseline" secondItem="MAU-nV-5rc" secondAttribute="baseline" type="default" id="XQH-Ih-qqq"/>
                             <constraint firstItem="1zG-ED-8SW" firstAttribute="centerX" secondItem="nEV-rZ-7DC" secondAttribute="centerX" type="default" id="eRH-aA-Rte"/>
+                            <constraint firstItem="UKa-Vk-8kR" firstAttribute="leading" secondItem="OW2-av-SRV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ebE-RY-djz"/>
+                            <constraint firstItem="Fl2-Me-fpa" firstAttribute="leading" secondItem="nEV-rZ-7DC" secondAttribute="leading" type="default" id="pEE-BO-9KH"/>
+                            <constraint firstItem="MAU-nV-5rc" firstAttribute="baseline" secondItem="Fl2-Me-fpa" secondAttribute="baseline" type="default" id="pTl-c9-v2D"/>
+                            <constraint firstAttribute="bottom" secondItem="Fl2-Me-fpa" secondAttribute="bottom" constant="140" id="vqY-G0-1fk"/>
+                            <constraint firstItem="UKa-Vk-8kR" firstAttribute="baseline" secondItem="OW2-av-SRV" secondAttribute="baseline" type="default" id="zSe-J7-R2H"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQf-Aq-w4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1280" y="826"/>
+            <point key="canvasLocation" x="1410" y="827"/>
         </scene>
-        <!--Disp Pigeon View Controller - 遷移先-->
+        <!--Config View Controller - 設定画面-->
         <scene sceneID="EvM-60-YTt">
             <objects>
-                <viewController id="wtz-XB-PMa" customClass="DispPigeonViewController" sceneMemberID="viewController">
+                <viewController id="wtz-XB-PMa" customClass="ConfigViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FOh-yl-Emd" customClass="UIButton">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="遷移先" id="ajb-hT-r8R"/>
+                    <navigationItem key="navigationItem" title="設定画面" id="ajb-hT-r8R"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74M-Hr-zqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1280" y="161"/>
+            <point key="canvasLocation" x="1410" y="161"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fn8-NC-oBc">
@@ -124,6 +175,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="ConfigViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConfigViewController.h"/>
+        </class>
         <class className="DispPigeonViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DispPigeonViewController.h"/>
             <relationships>
