@@ -14,11 +14,13 @@
 
 @implementation ViewController
 
+//遷移参考：http://nanapi.co.jp/blog/2013/09/19/lets_make_iphone_mock/
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-}
+    }
 
 - (void)didReceiveMemoryWarning
 {
