@@ -12,7 +12,7 @@
 
 @end
 
-UIImageView *iv1 = NULL;
+UIImageView *iv_main = NULL;
 NSTimer *tm = nil;
 float count = 0;
 
@@ -50,35 +50,33 @@ float count = 0;
 - (IBAction)onClickCareButton:(id)sender {
     //おせわボタン押下時->一定時間、別のアニメーションを設定
     
-//    [iv1 stopAnimating];
     
-    NSLog(@"onClickCareButton");
+    //サブメインの(x_no,y_no)要素
+    int wid_sub = 50;
+    int hei_sub = 50;
+    for(int y_no = 0; y_no < 2;y_no++){
+        for (int x_no = 0; x_no < 6; x_no++){
+            NSLog(@"x = %d, y = %d", x_no, y_no);
+            CGRect rect_subXY = CGRectMake(
+                                           10 + x_no * wid_sub + 10,
+                                           275 + y_no * hei_sub + 10,
+                                           wid_sub,
+                                           hei_sub);
+            UIImageView *iv_subXY = [[UIImageView alloc]initWithFrame:rect_subXY];
+            iv_subXY.image = [UIImage imageNamed:@"sample4.jpg"];
+            iv_subXY.userInteractionEnabled = YES;
+            [self.view addSubview:iv_subXY];
+            iv_subXY.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+            [iv_subXY addGestureRecognizer:tap];
+        }
+    }
+    //サブメイン終了
     
-    count = 0;
-    tm = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                          target:self
-                                        selector:@selector(time:)
-                                        userInfo:nil
-                                         repeats:YES];
-
     
-    CGRect rect = CGRectMake(10, 50, 200, 200);//左上座標、幅、高さ
-    UIImageView *iv = [[UIImageView alloc]initWithFrame:rect];
-    iv.image = [UIImage imageNamed:@"sample3.jpg"];
-    [self.view addSubview:iv];
     
-    UIImage *im3 = [UIImage imageNamed:@"sample3.jpg"];
-    UIImage *im4 = [UIImage imageNamed:@"sample4.jpg"];
     
-    NSArray *ims = [NSArray arrayWithObjects:im3, im4, nil];
-    iv.animationImages = ims;
-    iv.animationDuration = 1.5;
-    iv.animationRepeatCount = 2;
-    [self.view addSubview:iv];
     
-    [iv startAnimating];
-    
-    NSLog(@"onClickCare Exit");
     
     
     
@@ -91,21 +89,34 @@ float count = 0;
 
 
 - (void)ordinaryAnimationStart{
-    //複数画像のアニメーション例
-    CGRect rect = CGRectMake(10, 50, 200, 200);//左上座標、幅、高さ
-    iv1 = [[UIImageView alloc]initWithFrame:rect];
-    iv1.image = [UIImage imageNamed:@"sample1.jpg"];
-    [self.view addSubview:iv1];
+    //メイン部分
+    CGRect rect_main = CGRectMake(10, 50, 300, 200);//左上座標、幅、高さ
+    iv_main = [[UIImageView alloc]initWithFrame:rect_main];
+    iv_main.image = [UIImage imageNamed:@"sample1.jpg"];
+    [self.view addSubview:iv_main];
     
     UIImage *im1 = [UIImage imageNamed:@"sample1.jpg"];
-    UIImage *im2 = [UIImage imageNamed:@"sample2.png"];
+    UIImage *im2 = [UIImage imageNamed:@"sample2.jpg"];
     
     NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
-    iv1.animationImages = ims;
-    iv1.animationDuration = 1.5;
-    [self.view addSubview:iv1];
+    iv_main.animationImages = ims;
+    iv_main.animationDuration = 1.5;
+    [self.view addSubview:iv_main];
     
-    [iv1 startAnimating];
+    [iv_main startAnimating];
+    
+    //メイン部分終了
+    
+    
+    //サブメイン(ボタン押下時に表示される部分)
+    CGRect rect_sub = CGRectMake(10, 270, 300, 100);//左上座標、幅、高さ
+    UIImageView *iv_sub = [[UIImageView alloc]initWithFrame:rect_sub];
+    iv_sub = [[UIImageView alloc]initWithFrame:rect_sub];
+    iv_sub.image = [UIImage imageNamed:@"sample2.jpg"];
+    [self.view addSubview:iv_sub];
+    
+    
+    
     
     NSLog(@"startAnimating");
 }
@@ -127,5 +138,41 @@ float count = 0;
         [self ordinaryAnimationStart];
     }
 }
-
+- (void)tap:(UITapGestureRecognizer*)gr{
+    //http://lepetit-prince.net/ios/?p=1822
+    
+    NSLog(@"tapped image");
+    
+    [iv_main stopAnimating];
+    
+    NSLog(@"onClickCareButton");
+    
+    count = 0;
+    tm = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                          target:self
+                                        selector:@selector(time:)//タイマー呼び出し
+                                        userInfo:nil
+                                         repeats:YES];
+    
+    
+    CGRect rect = CGRectMake(10, 50, 300, 200);//左上座標、幅、高さ
+    UIImageView *iv = [[UIImageView alloc]initWithFrame:rect];
+    iv.image = [UIImage imageNamed:@"sample3.jpg"];
+    [self.view addSubview:iv];
+    
+    UIImage *im3 = [UIImage imageNamed:@"sample3.jpg"];
+    UIImage *im4 = [UIImage imageNamed:@"sample4.jpg"];
+    
+    NSArray *ims = [NSArray arrayWithObjects:im3, im4, nil];
+    iv.animationImages = ims;
+    iv.animationDuration = 1.5;//1.5秒間アニメーションを実施
+    iv.animationRepeatCount = 5;
+    [self.view addSubview:iv];
+    
+    [iv startAnimating];//アクションアニメーション開始
+    
+    //    NSLog(@"onClickCare Exit");
+    
+    
+}
 @end

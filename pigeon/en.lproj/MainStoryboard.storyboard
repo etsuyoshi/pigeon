@@ -14,8 +14,8 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-Tj-tC2">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="133" id="cfU-0p-QIo"/>
-                                    <constraint firstAttribute="height" constant="43" id="itR-Fv-hco"/>
+                                    <constraint firstAttribute="height" constant="61" id="Vi0-3X-aK2"/>
+                                    <constraint firstAttribute="width" constant="174" id="u4K-Rs-31n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="config">
@@ -51,9 +51,9 @@
                         <constraints>
                             <constraint firstItem="Gvx-Tj-tC2" firstAttribute="baseline" secondItem="cSJ-U9-s2z" secondAttribute="baseline" type="default" id="7QW-6h-0qo"/>
                             <constraint firstItem="cSJ-U9-s2z" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="M04-41-gsZ"/>
-                            <constraint firstItem="Gvx-Tj-tC2" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Ut4-lJ-kro"/>
-                            <constraint firstItem="cSJ-U9-s2z" firstAttribute="centerX" secondItem="Gvx-Tj-tC2" secondAttribute="centerX" type="default" id="dTO-ND-u0P"/>
+                            <constraint firstItem="Gvx-Tj-tC2" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="WfP-5w-zCh"/>
                             <constraint firstAttribute="bottom" secondItem="Gvx-Tj-tC2" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dxQ-fG-kyJ"/>
+                            <constraint firstItem="cSJ-U9-s2z" firstAttribute="centerX" secondItem="Gvx-Tj-tC2" secondAttribute="centerX" type="default" id="zCU-aT-kOo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="タイトル(仮)" prompt="初期画面" id="b0A-Of-Tga">
@@ -137,16 +137,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UKa-Vk-8kR" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="2FR-TW-uOL"/>
                             <constraint firstItem="1zG-ED-8SW" firstAttribute="top" secondItem="nEV-rZ-7DC" secondAttribute="top" type="default" id="6i2-sb-g04"/>
                             <constraint firstItem="OW2-av-SRV" firstAttribute="leading" secondItem="MAU-nV-5rc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AcB-fh-yBv"/>
                             <constraint firstItem="MAU-nV-5rc" firstAttribute="leading" secondItem="Fl2-Me-fpa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="FZw-KH-mQn"/>
-                            <constraint firstItem="OW2-av-SRV" firstAttribute="baseline" secondItem="MAU-nV-5rc" secondAttribute="baseline" type="default" id="XQH-Ih-qqq"/>
+                            <constraint firstAttribute="bottom" secondItem="MAU-nV-5rc" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="N6t-NP-Pd6"/>
+                            <constraint firstAttribute="bottom" secondItem="OW2-av-SRV" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Noh-aH-X6F"/>
                             <constraint firstItem="1zG-ED-8SW" firstAttribute="centerX" secondItem="nEV-rZ-7DC" secondAttribute="centerX" type="default" id="eRH-aA-Rte"/>
                             <constraint firstItem="UKa-Vk-8kR" firstAttribute="leading" secondItem="OW2-av-SRV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ebE-RY-djz"/>
-                            <constraint firstItem="Fl2-Me-fpa" firstAttribute="leading" secondItem="nEV-rZ-7DC" secondAttribute="leading" type="default" id="pEE-BO-9KH"/>
-                            <constraint firstItem="MAU-nV-5rc" firstAttribute="baseline" secondItem="Fl2-Me-fpa" secondAttribute="baseline" type="default" id="pTl-c9-v2D"/>
-                            <constraint firstAttribute="bottom" secondItem="Fl2-Me-fpa" secondAttribute="bottom" constant="140" id="vqY-G0-1fk"/>
-                            <constraint firstItem="UKa-Vk-8kR" firstAttribute="baseline" secondItem="OW2-av-SRV" secondAttribute="baseline" type="default" id="zSe-J7-R2H"/>
+                            <constraint firstAttribute="bottom" secondItem="Fl2-Me-fpa" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="s0w-Cl-bWD"/>
+                            <constraint firstItem="Fl2-Me-fpa" firstAttribute="leading" secondItem="nEV-rZ-7DC" secondAttribute="leading" constant="8" id="uHL-a5-3Ik"/>
                         </constraints>
                     </view>
                 </viewController>
