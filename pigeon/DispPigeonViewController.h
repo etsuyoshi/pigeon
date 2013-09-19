@@ -10,5 +10,9 @@
 
 @interface DispPigeonViewController : UIViewController
 - (IBAction)myOnClickCloseButton:(id)sender;
+- (IBAction)onClickCareButton:(id)sender;
+- (IBAction)onClickRoomButton:(id)sender;
+
+- (void)ordinaryAnimationStart;
 
 @end

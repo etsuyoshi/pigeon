@@ -12,6 +12,10 @@
 
 @end
 
+UIImageView *iv1 = NULL;
+NSTimer *tm = nil;
+float count = 0;
+
 @implementation DispPigeonViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,51 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    
-    // 生成例
-    //    UIImageView *iv = [[UIImageView alloc] init];
-    
-    // UIImageを指定した生成例
-    //    UIImage *image = [UIImage imageNamed:@"sample.jpg"];
-    //    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
-    //    [self.view addSubview:iv];
-    
-    
-    // 画像サイズを指定して表示
-    //    CGRect rect = CGRectMake(10, 10, 300, 400);
-    //    UIImageView *imageView = [[UIImageView alloc]initWithFrame:rect];
-    //    imageView.image = [UIImage imageNamed:@"sample.jpg"];
-    //    [self.view addSubview:imageView];// UIImageViewのインスタンスをビューに追加
-    
-    //複数画像のアニメーション例
-    CGRect rect = CGRectMake(10, 50, 200, 200);//左上座標、幅、高さ
-    UIImageView *iv = [[UIImageView alloc]initWithFrame:rect];
-    iv.image = [UIImage imageNamed:@"sample1.jpg"];
-    //    UIImageView *iv = [[UIImageView alloc] init];
-    [self.view addSubview:iv];
-    
-    UIImage *im1 = [UIImage imageNamed:@"sample1.jpg"];
-    UIImage *im2 = [UIImage imageNamed:@"sample2.png"];
-    //    UIImageView *iv = [[UIImageView alloc] initWithImage:im1];
-    
-    //    UIImage *im3 = [UIImage imageNamed:@"sample2.jpg"];
-    NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
-    iv.animationImages = ims;
-    iv.animationDuration = 1.5;
-    [self.view addSubview:iv];
-    
-    [iv startAnimating];
-    //    for(int i = 0;i < 100000;i++){
-    //        NSLog(@"%d", i);
-    //    }
-    //    [iv stopAnimating];
-    
-    
-    //    UIImage *hand_img = [UIImage imageNamed: @"sample.jpg"];
-    //    UIImageView *hand_iv = [[UIImageView alloc] initWithImage: hand_img];
-    //    hand_iv.frame = CGRectMake(46, 5, 229, 342);
-    //    [self.view addSubview:hand_iv];
+    [self ordinaryAnimationStart];
     
 
 }
@@ -83,6 +43,89 @@
 }
 
 - (IBAction)myOnClickCloseButton:(id)sender {
+    //画面を閉じる
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
+
+- (IBAction)onClickCareButton:(id)sender {
+    //おせわボタン押下時->一定時間、別のアニメーションを設定
+    
+//    [iv1 stopAnimating];
+    
+    NSLog(@"onClickCareButton");
+    
+    count = 0;
+    tm = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                          target:self
+                                        selector:@selector(time:)
+                                        userInfo:nil
+                                         repeats:YES];
+
+    
+    CGRect rect = CGRectMake(10, 50, 200, 200);//左上座標、幅、高さ
+    UIImageView *iv = [[UIImageView alloc]initWithFrame:rect];
+    iv.image = [UIImage imageNamed:@"sample3.jpg"];
+    [self.view addSubview:iv];
+    
+    UIImage *im3 = [UIImage imageNamed:@"sample3.jpg"];
+    UIImage *im4 = [UIImage imageNamed:@"sample4.jpg"];
+    
+    NSArray *ims = [NSArray arrayWithObjects:im3, im4, nil];
+    iv.animationImages = ims;
+    iv.animationDuration = 1.5;
+    iv.animationRepeatCount = 2;
+    [self.view addSubview:iv];
+    
+    [iv startAnimating];
+    
+    NSLog(@"onClickCare Exit");
+    
+    
+    
+}
+
+
+- (IBAction)onClickRoomButton:(id)sender {
+    //
+}
+
+
+- (void)ordinaryAnimationStart{
+    //複数画像のアニメーション例
+    CGRect rect = CGRectMake(10, 50, 200, 200);//左上座標、幅、高さ
+    iv1 = [[UIImageView alloc]initWithFrame:rect];
+    iv1.image = [UIImage imageNamed:@"sample1.jpg"];
+    [self.view addSubview:iv1];
+    
+    UIImage *im1 = [UIImage imageNamed:@"sample1.jpg"];
+    UIImage *im2 = [UIImage imageNamed:@"sample2.png"];
+    
+    NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
+    iv1.animationImages = ims;
+    iv1.animationDuration = 1.5;
+    [self.view addSubview:iv1];
+    
+    [iv1 startAnimating];
+    
+    NSLog(@"startAnimating");
+}
+
+- (void)time:(NSTimer*)timer{
+    count += 0.1;
+    NSLog(@"time:%f", count);
+    //タイマーが有効かどうか
+    NSString *str = [tm isValid] ? @"yes" : @"no";
+    
+    NSLog(@"isValid:%@", str);
+    
+    
+    //アクションアニメーションへの終了
+    if(count >=3.0){
+        //３秒経過したらタイマー終了
+        [tm invalidate];
+        //終了したら通常アニメーション実行
+        [self ordinaryAnimationStart];
+    }
+}
+
 @end

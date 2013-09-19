@@ -15,9 +15,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvx-Tj-tC2">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="133" id="cfU-0p-QIo"/>
+                                    <constraint firstAttribute="height" constant="43" id="itR-Fv-hco"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="test_trans">
+                                <state key="normal" title="config">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -29,8 +30,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSJ-U9-s2z">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="117" id="N25-FT-HVG"/>
+                                    <constraint firstAttribute="height" constant="43" id="qe5-RH-dyC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="ゲーム">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -44,10 +49,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Gvx-Tj-tC2" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="C9X-Qt-V3d"/>
-                            <constraint firstItem="Gvx-Tj-tC2" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="I54-s4-zrB"/>
+                            <constraint firstItem="Gvx-Tj-tC2" firstAttribute="baseline" secondItem="cSJ-U9-s2z" secondAttribute="baseline" type="default" id="7QW-6h-0qo"/>
                             <constraint firstItem="cSJ-U9-s2z" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="M04-41-gsZ"/>
-                            <constraint firstItem="cSJ-U9-s2z" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="sD3-d0-au9"/>
+                            <constraint firstItem="Gvx-Tj-tC2" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Ut4-lJ-kro"/>
+                            <constraint firstItem="cSJ-U9-s2z" firstAttribute="centerX" secondItem="Gvx-Tj-tC2" secondAttribute="centerX" type="default" id="dTO-ND-u0P"/>
+                            <constraint firstAttribute="bottom" secondItem="Gvx-Tj-tC2" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="dxQ-fG-kyJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="タイトル(仮)" prompt="初期画面" id="b0A-Of-Tga">
@@ -84,27 +90,33 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-Me-fpa">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="おせわ">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onClickCareButton:" destination="dPV-3P-FY4" eventType="touchUpInside" id="CT8-N7-mDy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAU-nV-5rc">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="おへや">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onClickRoomButton:" destination="dPV-3P-FY4" eventType="valueChanged" id="5mT-7z-tuU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW2-av-SRV">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="しあい">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -114,7 +126,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKa-Vk-8kR">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="つーる">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -128,7 +140,6 @@
                             <constraint firstItem="1zG-ED-8SW" firstAttribute="top" secondItem="nEV-rZ-7DC" secondAttribute="top" type="default" id="6i2-sb-g04"/>
                             <constraint firstItem="OW2-av-SRV" firstAttribute="leading" secondItem="MAU-nV-5rc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AcB-fh-yBv"/>
                             <constraint firstItem="MAU-nV-5rc" firstAttribute="leading" secondItem="Fl2-Me-fpa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="FZw-KH-mQn"/>
-                            <constraint firstItem="UKa-Vk-8kR" firstAttribute="top" secondItem="OW2-av-SRV" secondAttribute="top" type="default" id="QfU-7Y-Vn4"/>
                             <constraint firstItem="OW2-av-SRV" firstAttribute="baseline" secondItem="MAU-nV-5rc" secondAttribute="baseline" type="default" id="XQH-Ih-qqq"/>
                             <constraint firstItem="1zG-ED-8SW" firstAttribute="centerX" secondItem="nEV-rZ-7DC" secondAttribute="centerX" type="default" id="eRH-aA-Rte"/>
                             <constraint firstItem="UKa-Vk-8kR" firstAttribute="leading" secondItem="OW2-av-SRV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ebE-RY-djz"/>
@@ -182,6 +193,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DispPigeonViewController.h"/>
             <relationships>
                 <relationship kind="action" name="myOnClickCloseButton:"/>
+                <relationship kind="action" name="onClickCareButton:"/>
+                <relationship kind="action" name="onClickRoomButton:"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
