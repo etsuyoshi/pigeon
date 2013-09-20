@@ -83,13 +83,18 @@ float count = 0;
 
 - (void)ordinaryAnimationStart{
     //メイン部分
-    CGRect rect_main = CGRectMake(10, 50, 200, 100);//左上座標、幅、高さ
+    //サイズ参考：http://ameblo.jp/sakurabishi/entry-11447586307.html
+    int main_width = 200;
+    int main_height = 200;
+    int main_left = [[UIScreen mainScreen] bounds].size.width/2-main_width/2;//画面サイズに対して中央になるように左位置特定
+    int main_top = 50;
+    CGRect rect_main = CGRectMake(main_left, main_top, main_width, main_height);//左上座標、幅、高さ
     iv_main = [[UIImageView alloc]initWithFrame:rect_main];
     iv_main.image = [UIImage imageNamed:@"pengin.jpg"];
     [self.view addSubview:iv_main];
     
-    UIImage *im1 = [UIImage imageNamed:@"pigeon3.png"];
-    UIImage *im2 = [UIImage imageNamed:@"pigeon5_big3.png"];
+    UIImage *im1 = [UIImage imageNamed:@"origin_small4_384.png"];
+    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384.png"];
     
     NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
     iv_main.animationImages = ims;
@@ -110,6 +115,35 @@ float count = 0;
     [self.view addSubview:iv_sub];
     
     
+    //サブメイン終了
+    
+    
+    //下段ボタン開始
+    CGRect rect_bt;
+    int bt_size = 25;
+    int bt_left = 10;
+    int bt_top = 400;
+    UIImageView *iv_bt = nil;
+    NSArray *bt_name = [NSArray arrayWithObjects:
+                    @"icon_smile2.png",
+                    @"home3.png",
+                    @"icon_fight2.png",
+                    @"icon_tool.png",
+                    nil];
+    for (int bt_no = 0;bt_no < 4;bt_no++){
+        //位置とサイズの決定
+        rect_bt = CGRectMake(bt_left + bt_no * bt_size,
+                             bt_top,
+                             bt_size,
+                             bt_size);
+        NSLog(@"no = %d, x = %d, y = %d",bt_no, bt_left + bt_no * bt_size, bt_top);
+        iv_bt = [[UIImageView alloc]initWithFrame:rect_bt];
+        iv_bt.image = [UIImage imageNamed:[bt_name objectAtIndex:bt_no]];
+        [self.view addSubview:iv_bt];
+    }
+    
+    
+    //下段ボタン終了
     
     
     NSLog(@"startAnimating");
