@@ -67,19 +67,12 @@ float count = 0;
             iv_subXY.userInteractionEnabled = YES;
             [self.view addSubview:iv_subXY];
             iv_subXY.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTappedSubMenu:)];
             [iv_subXY addGestureRecognizer:tap];
         }
     }
     //サブメイン終了
-    
-    
-    
-    
-    
-    
-    
-    
+        
 }
 
 
@@ -90,17 +83,18 @@ float count = 0;
 
 - (void)ordinaryAnimationStart{
     //メイン部分
-    CGRect rect_main = CGRectMake(10, 50, 300, 200);//左上座標、幅、高さ
+    CGRect rect_main = CGRectMake(10, 50, 200, 100);//左上座標、幅、高さ
     iv_main = [[UIImageView alloc]initWithFrame:rect_main];
-    iv_main.image = [UIImage imageNamed:@"sample1.jpg"];
+    iv_main.image = [UIImage imageNamed:@"pengin.jpg"];
     [self.view addSubview:iv_main];
     
-    UIImage *im1 = [UIImage imageNamed:@"sample1.jpg"];
-    UIImage *im2 = [UIImage imageNamed:@"sample2.jpg"];
+    UIImage *im1 = [UIImage imageNamed:@"pigeon3.png"];
+    UIImage *im2 = [UIImage imageNamed:@"pigeon5_big3.png"];
     
     NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
     iv_main.animationImages = ims;
     iv_main.animationDuration = 1.5;
+    iv_main.animationRepeatCount = 0;
     [self.view addSubview:iv_main];
     
     [iv_main startAnimating];
@@ -138,15 +132,14 @@ float count = 0;
         [self ordinaryAnimationStart];
     }
 }
-- (void)tap:(UITapGestureRecognizer*)gr{
+
+//サブメニューをタップした時に起動
+- (void)onTappedSubMenu:(UITapGestureRecognizer*)gr{
     //http://lepetit-prince.net/ios/?p=1822
     
-    NSLog(@"tapped image");
+    NSLog(@"tapped sub image");
     
     [iv_main stopAnimating];
-    
-    NSLog(@"onClickCareButton");
-    
     count = 0;
     tm = [NSTimer scheduledTimerWithTimeInterval:0.1
                                           target:self
