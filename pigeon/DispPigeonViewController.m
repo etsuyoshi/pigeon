@@ -13,9 +13,11 @@
 @end
 
 UIImageView *iv_main = NULL;
+NSMutableArray *iv_subAr = nil;//[NSMutableArray array];=>ここでは初期化できない
 NSTimer *tm = nil;
 float count = 0;//0.1秒おきのカウンター
 int icon_interval = 30;
+Boolean isSubMainDisplayed = false;
 
 
 @implementation DispPigeonViewController
@@ -32,7 +34,13 @@ int icon_interval = 30;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
+    
+    //initializing parameter
+    iv_subAr = [NSMutableArray array];
+    
+    
     [self ordinaryAnimationStart];
     
 
@@ -59,7 +67,7 @@ int icon_interval = 30;
     int main_top = 50;
     CGRect rect_main = CGRectMake(main_left, main_top, main_width, main_height);//左上座標、幅、高さ
     iv_main = [[UIImageView alloc]initWithFrame:rect_main];
-    iv_main.image = [UIImage imageNamed:@"pengin.jpg"];
+    iv_main.image = [UIImage imageNamed:@"pengin___.jpg"];
     [self.view addSubview:iv_main];
     
     UIImage *im1 = [UIImage imageNamed:@"origin_small4_384.png"];
@@ -123,23 +131,6 @@ int icon_interval = 30;
     NSLog(@"startAnimating");
 }
 
-- (void)time:(NSTimer*)timer{
-    count += 0.1;
-    NSLog(@"time:%f", count);
-    //タイマーが有効かどうか
-    NSString *str = [tm isValid] ? @"yes" : @"no";
-    
-    NSLog(@"isValid:%@", str);
-    
-    
-    //アクションアニメーションへの終了
-    if(count >=3.0){
-        //３秒経過したらタイマー終了
-        [tm invalidate];
-        //終了したら通常アニメーション実行
-        [self ordinaryAnimationStart];
-    }
-}
 
 //サブメニューをタップした時に起動
 - (void)onTappedSubMenu:(UITapGestureRecognizer*)gr{
@@ -179,65 +170,107 @@ int icon_interval = 30;
 
 //- (IBAction)onClickCareButton:(id)sender {
 - (void)onTappedIcon:(UITapGestureRecognizer*)gr{
-    //おせわボタン押下時->一定時間、別のアニメーションを設定
-    NSLog(@"onTappedIcon");
-    
-    NSLog(@"%d",[(UIGestureRecognizer *)gr view].tag);//タップされたビューの番号
-    
-    NSArray *iconAr = nil;//[[NSMutableArray alloc]init];
-    switch([(UIGestureRecognizer *)gr view].tag){
-    case 0://おせわボタンが選択された時
-            iconAr = [[NSArray alloc] initWithObjects:@"restaurant.png",
-                      @"joystick.png",
-                      @"tree.png",
-                      @"pencil",
-                      @"first-aid-kit.png",
-                      @"bath.png",
-                      @"sleep.png", nil];
-        break;
+    if (isSubMainDisplayed){//既に表示されている場合は削除する
+        NSLog(@"icon removeFromSuperview");
+        for (int i = 0; i < [iv_subAr count]; i++){
+            //https://github.com/DeveloperForceJapan/SalesforceMobileSDK-iOS-JpSample/blob/master/StoreOrders/OrderViewController.m
+            [[iv_subAr objectAtIndex:i] removeFromSuperview];//各種アイコンの削除(非表示)
+        }
+        isSubMainDisplayed = false;
+    }else{
         
-    case 1://ホームボタンが押された時
-            iconAr = [[NSArray alloc] initWithObjects:@"restaurant.png",
-                      @"joystick.png",
-                      @"tree.png",
-                      @"pencil",
-                      nil];
-        break;
+        //おせわボタン押下時->一定時間、別のアニメーションを設定
+        NSLog(@"onTappedIcon");
         
-    default://
+        NSLog(@"%d",[(UIGestureRecognizer *)gr view].tag);//タップされたビューの番号
         
-        break;
-    }
-    
-    
-    
-    //サブメインの(x_no,y_no)要素
-    int wid_sub = 30;
-    int hei_sub = 25;
-    int icon_no = 0;
-    int max_icon_no = 5;
-    for(int y_no = 0; y_no < 2 && [iconAr count] > icon_no;y_no++){
-        for (int x_no = 0; x_no < max_icon_no && [iconAr count] > icon_no; x_no++){
-            //一行のアイコン個数が最大配置個数(=max_icon_no)以下もしくはアイコンの格納数まで。
-//            NSLog(@"x = %d, y = %d", x_no, y_no);
-            CGRect rect_subXY = CGRectMake(
-                                           10 + x_no * (wid_sub + icon_interval),
-                                           275 + y_no * (hei_sub + icon_interval),
-                                           wid_sub,
-                                           hei_sub);
-            UIImageView *iv_subXY = [[UIImageView alloc]initWithFrame:rect_subXY];
-            iv_subXY.image = [UIImage imageNamed:[iconAr objectAtIndex:icon_no]];
-            iv_subXY.userInteractionEnabled = YES;
-            [self.view addSubview:iv_subXY];
-            iv_subXY.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tap =
+        //表示するアイコンの名称設定
+        NSArray *iconAr = nil;//[[NSMutableArray alloc]init];
+        switch([(UIGestureRecognizer *)gr view].tag){
+            case 0://おせわボタンが選択された時
+                iconAr = [[NSArray alloc] initWithObjects:@"restaurant.png",
+                          @"joystick.png",
+                          @"tree.png",
+                          @"pencil",
+                          @"first-aid-kit.png",
+                          @"bath.png",
+                          @"sleep.png", nil];
+                break;
+                
+            case 1://ホームボタンが押された時
+                iconAr = [[NSArray alloc] initWithObjects:@"restaurant.png",
+                          @"joystick.png",
+                          @"tree.png",
+                          @"pencil",
+                          nil];
+                break;
+                
+            default://
+                
+                break;
+        }
+        
+        
+        
+        //サブメインの(x_no,y_no)要素：アイコンの実装(表示)
+        int wid_sub = 30;
+        int hei_sub = 25;
+        int icon_sub_no = 0;
+        int max_icon_no = 5;
+        iv_subAr = [NSMutableArray array];//初期化
+        for(int y_no = 0; y_no < 2 && [iconAr count] > icon_sub_no;y_no++){
+            for (int x_no = 0; x_no < max_icon_no && [iconAr count] > icon_sub_no; x_no++){
+                //一行のアイコン個数が最大配置個数(=max_icon_no)以下もしくはアイコンの格納数まで。
+                NSLog(@"x = %d, y = %d", x_no, y_no);
+                CGRect rect_subXY = CGRectMake(
+                                               10 + x_no * (wid_sub + icon_interval),
+                                               275 + y_no * (hei_sub + icon_interval),
+                                               wid_sub,
+                                               hei_sub);
+//                UIImageView *iv_subXY = [[UIImageView alloc]initWithFrame:rect_subXY];
+                [iv_subAr addObject:[[UIImageView alloc]initWithFrame:rect_subXY]];
+                
+                ((UIImageView *)[iv_subAr objectAtIndex:icon_sub_no]).image = [UIImage imageNamed:[iconAr objectAtIndex:icon_sub_no]];
+                
+                ((UIImageView *)[iv_subAr objectAtIndex:icon_sub_no]).userInteractionEnabled = YES;
+                
+                
+                UITapGestureRecognizer *tap =
                 [[UITapGestureRecognizer alloc] initWithTarget:self
                                                         action:@selector(onTappedSubMenu:)];
-            [iv_subXY addGestureRecognizer:tap];
-            icon_no ++;
-            
+                [[iv_subAr objectAtIndex:icon_sub_no] addGestureRecognizer:tap];
+                [self.view addSubview:[iv_subAr objectAtIndex:icon_sub_no]];//親ビューに貼付ける
+
+                icon_sub_no ++;
+                
+            }
         }
+        //サブメイン表示フラグを立てる
+        isSubMainDisplayed = true;
+        //サブメイン終了
     }
-    //サブメイン終了    
+    
 }
+
+
+
+- (void)time:(NSTimer*)timer{
+    count += 0.1;
+    NSLog(@"time:%f", count);
+    //タイマーが有効かどうか
+    NSString *str = [tm isValid] ? @"yes" : @"no";
+    
+    NSLog(@"isValid:%@", str);
+    
+    
+    //アクションアニメーションへの終了
+    if(count >=3.0){
+        //３秒経過したらタイマー終了
+        [tm invalidate];
+        //終了したら通常アニメーション実行
+        [self ordinaryAnimationStart];
+    }
+}
+
+
 @end
