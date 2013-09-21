@@ -88,7 +88,7 @@ Boolean isSubMainDisplayed = false;
     CGRect rect_sub = CGRectMake(10, 270, 300, 100);//左上座標、幅、高さ
     UIImageView *iv_sub = [[UIImageView alloc]initWithFrame:rect_sub];
     iv_sub = [[UIImageView alloc]initWithFrame:rect_sub];
-    iv_sub.image = [UIImage imageNamed:@"sample2.jpg"];
+//    iv_sub.image = [UIImage imageNamed:@"sample2.jpg"];
     [self.view addSubview:iv_sub];
     
     
