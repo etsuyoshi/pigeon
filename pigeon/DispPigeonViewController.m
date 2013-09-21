@@ -47,39 +47,6 @@ float count = 0;
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{}];
 }
 
-- (IBAction)onClickCareButton:(id)sender {
-    //おせわボタン押下時->一定時間、別のアニメーションを設定
-    
-    
-    //サブメインの(x_no,y_no)要素
-    int wid_sub = 50;
-    int hei_sub = 50;
-    for(int y_no = 0; y_no < 2;y_no++){
-        for (int x_no = 0; x_no < 6; x_no++){
-            NSLog(@"x = %d, y = %d", x_no, y_no);
-            CGRect rect_subXY = CGRectMake(
-                                           10 + x_no * wid_sub + 10,
-                                           275 + y_no * hei_sub + 10,
-                                           wid_sub,
-                                           hei_sub);
-            UIImageView *iv_subXY = [[UIImageView alloc]initWithFrame:rect_subXY];
-            iv_subXY.image = [UIImage imageNamed:@"sample4.jpg"];
-            iv_subXY.userInteractionEnabled = YES;
-            [self.view addSubview:iv_subXY];
-            iv_subXY.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTappedSubMenu:)];
-            [iv_subXY addGestureRecognizer:tap];
-        }
-    }
-    //サブメイン終了
-        
-}
-
-
-- (IBAction)onClickRoomButton:(id)sender {
-    //
-}
-
 
 - (void)ordinaryAnimationStart{
     //メイン部分
@@ -118,9 +85,9 @@ float count = 0;
     //サブメイン終了
     
     
-    //下段ボタン開始
+    //下段ボタン開始(アイコン：http://freeicon.blog.shinobi.jp/psd-vector%20%E3%83%87%E3%83%BC%E3%82%BF/%E5%95%86%E7%94%A8%E7%84%A1%E6%96%99%E3%81%AE%E3%83%A2%E3%83%8E%E3%82%AF%E3%83%AD%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%80%8Cwpzoom%20developer%20icon%20set%E3%80%8D)
     CGRect rect_bt;
-    int bt_size = 25;
+    int bt_size = 35;
     int bt_left = 10;
     int bt_top = 400;
     UIImageView *iv_bt = nil;
@@ -136,9 +103,13 @@ float count = 0;
                              bt_top,
                              bt_size,
                              bt_size);
-        NSLog(@"no = %d, x = %d, y = %d",bt_no, bt_left + bt_no * bt_size, bt_top);
+//        NSLog(@"no = %d, x = %d, y = %d",bt_no, bt_left + bt_no * bt_size, bt_top);
         iv_bt = [[UIImageView alloc]initWithFrame:rect_bt];
         iv_bt.image = [UIImage imageNamed:[bt_name objectAtIndex:bt_no]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(onTappedIcon:)];
+        [iv_bt addGestureRecognizer:tap];
+        iv_bt.userInteractionEnabled = YES;
         [self.view addSubview:iv_bt];
     }
     
@@ -200,6 +171,35 @@ float count = 0;
     
     //    NSLog(@"onClickCare Exit");
     
+    
+}
+
+//- (IBAction)onClickCareButton:(id)sender {
+- (void)onTappedIcon:(UITapGestureRecognizer*)gr{
+    //おせわボタン押下時->一定時間、別のアニメーションを設定
+    NSLog(@"onTappedIcon");
+    
+    //サブメインの(x_no,y_no)要素
+    int wid_sub = 50;
+    int hei_sub = 50;
+    for(int y_no = 0; y_no < 2;y_no++){
+        for (int x_no = 0; x_no < 6; x_no++){
+            NSLog(@"x = %d, y = %d", x_no, y_no);
+            CGRect rect_subXY = CGRectMake(
+                                           10 + x_no * wid_sub + 10,
+                                           275 + y_no * hei_sub + 10,
+                                           wid_sub,
+                                           hei_sub);
+            UIImageView *iv_subXY = [[UIImageView alloc]initWithFrame:rect_subXY];
+            iv_subXY.image = [UIImage imageNamed:@"sample4.jpg"];
+            iv_subXY.userInteractionEnabled = YES;
+            [self.view addSubview:iv_subXY];
+            iv_subXY.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTappedSubMenu:)];
+            [iv_subXY addGestureRecognizer:tap];
+        }
+    }
+    //サブメイン終了
     
 }
 @end
