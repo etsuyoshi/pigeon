@@ -70,8 +70,8 @@ Boolean isSubMainDisplayed = false;
     iv_main.image = [UIImage imageNamed:@"pengin___.jpg"];
     [self.view addSubview:iv_main];
     
-    UIImage *im1 = [UIImage imageNamed:@"origin_small4_384.png"];
-    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384.png"];
+    UIImage *im1 = [UIImage imageNamed:@"origin_small4_384___.png"];
+    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384____.png"];
     
     NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
     iv_main.animationImages = ims;
@@ -191,20 +191,41 @@ Boolean isSubMainDisplayed = false;
                 iconAr = [[NSArray alloc] initWithObjects:@"restaurant.png",
                           @"joystick.png",
                           @"tree.png",
-                          @"pencil",
+                          @"pencil.png",
                           @"first-aid-kit.png",
                           @"bath.png",
                           @"sleep.png", nil];
                 break;
                 
             case 1://ホームボタンが押された時
-                iconAr = [[NSArray alloc] initWithObjects:@"restaurant.png",
-                          @"joystick.png",
-                          @"tree.png",
-                          @"pencil",
+                iconAr = [[NSArray alloc] initWithObjects:@"bag.png",
+                          @"heart.png",
+                          @"",
+                          @"",
                           nil];
                 break;
                 
+            case 2:
+                iconAr = [[NSArray alloc] initWithObjects:@"soccer.png",
+                          @"baseball.png",
+                          @"basket.png",
+                          @"tennis",
+                          @"",
+                          @"",
+                          nil];
+                
+                break;
+                
+            case 3:
+                
+                break;
+            
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
             default://
                 
                 break;
@@ -221,7 +242,7 @@ Boolean isSubMainDisplayed = false;
         for(int y_no = 0; y_no < 2 && [iconAr count] > icon_sub_no;y_no++){
             for (int x_no = 0; x_no < max_icon_no && [iconAr count] > icon_sub_no; x_no++){
                 //一行のアイコン個数が最大配置個数(=max_icon_no)以下もしくはアイコンの格納数まで。
-                NSLog(@"x = %d, y = %d", x_no, y_no);
+//                NSLog(@"x = %d, y = %d", x_no, y_no);
                 CGRect rect_subXY = CGRectMake(
                                                10 + x_no * (wid_sub + icon_interval),
                                                275 + y_no * (hei_sub + icon_interval),
