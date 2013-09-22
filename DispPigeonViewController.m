@@ -17,7 +17,10 @@ UIImageView *iv_main = NULL;
 NSMutableArray *iv_subAr = nil;//[NSMutableArray array];=>ここでは初期化できない
 NSTimer *tm = nil;
 float count = 0;//0.1秒おきのカウンター
-int icon_interval = 30;
+int icon_Xinterval = 30;//アイコン横感覚
+int icon_Yinterval = 10;//アイコン縦感覚
+int bt_size = 25;//アイコンの大きさ
+int bt_left = 25;//アイコンの左位置
 Boolean isSubMainDisplayed = false;
 
 
@@ -73,7 +76,8 @@ Boolean isSubMainDisplayed = false;
     [self.view addSubview:iv_main];
     
     UIImage *im1 = [UIImage imageNamed:@"origin_small4_384.png"];
-    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384.png"];
+//    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384.png"];=>触ったときの反応：作る必要
+    UIImage *im2 = [UIImage imageNamed:@"origin_small4_motion_384.png"];
     
     NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
     iv_main.animationImages = ims;
@@ -87,10 +91,10 @@ Boolean isSubMainDisplayed = false;
     
     
     //サブメイン(ボタン押下時に表示される部分)
-    CGRect rect_sub = CGRectMake(10, 270, 300, 100);//左上座標、幅、高さ
+    CGRect rect_sub = CGRectMake(0, 250, 320, 100);//左上座標、幅、高さ
     UIImageView *iv_sub = [[UIImageView alloc]initWithFrame:rect_sub];
     iv_sub = [[UIImageView alloc]initWithFrame:rect_sub];
-//    iv_sub.image = [UIImage imageNamed:@"sample2.jpg"];
+    iv_sub.image = [UIImage imageNamed:@"frame_paste.png"];
     [self.view addSubview:iv_sub];
     
     
@@ -99,9 +103,7 @@ Boolean isSubMainDisplayed = false;
     
     //下段ボタン開始(アイコン：http://www.wpzoom.com/wpzoom/new-freebie-wpzoom-developer-icon-set-154-free-icons/)
     CGRect rect_bt;
-    int bt_size = 35;
-    int bt_left = 10;
-    int bt_top = 400;
+    int bt_top = 350;
     UIImageView *iv_bt = nil;
     NSArray *bt_name = [NSArray arrayWithObjects:
                     @"man.png",
@@ -111,7 +113,7 @@ Boolean isSubMainDisplayed = false;
                     nil];
     for (int bt_no = 0;bt_no < 4;bt_no++){
         //位置とサイズの決定
-        rect_bt = CGRectMake(bt_left + bt_no * (bt_size + icon_interval),
+        rect_bt = CGRectMake(bt_left + bt_no * (bt_size + icon_Xinterval),
                              bt_top,
                              bt_size,
                              bt_size);
@@ -151,15 +153,16 @@ Boolean isSubMainDisplayed = false;
     
     //メイン画面と同じ大きさで別のアニメーションを実施(食べる仕草、運動する仕草等)
 //    UIImageView *iv = [[UIImageView alloc]initWithFrame:rect_main];
-    iv_main.image = [UIImage imageNamed:@"sample3.jpg"];
+    iv_main.image = [UIImage imageNamed:@"slime2_3.png"];
     [self.view addSubview:iv_main];
+    UIImage *im3 = [UIImage imageNamed:@"slime2_3.png"];
+    UIImage *im4 = [UIImage imageNamed:@"slime2_jumpPre.png"];
+    UIImage *im5 =[UIImage imageNamed:@"slime2_jump.png"];
+    UIImage *im6 = [UIImage imageNamed:@"slime2_jumpPre.png"];
     
-    UIImage *im3 = [UIImage imageNamed:@"sample3.jpg"];
-    UIImage *im4 = [UIImage imageNamed:@"sample4.jpg"];
-    
-    NSArray *ims = [NSArray arrayWithObjects:im3, im4, nil];
+    NSArray *ims = [NSArray arrayWithObjects:im3, im4, im5, im6, nil];
     iv_main.animationImages = ims;
-    iv_main.animationDuration = 1.5;//1.5秒間アニメーションを実施
+    iv_main.animationDuration = 2.5;//1.5秒間アニメーションを実施
     iv_main.animationRepeatCount = 5;
     [self.view addSubview:iv_main];
     
@@ -236,8 +239,6 @@ Boolean isSubMainDisplayed = false;
         
         
         //サブメインの(x_no,y_no)要素：アイコンの実装(表示)
-        int wid_sub = 30;
-        int hei_sub = 25;
         int icon_sub_no = 0;
         int max_icon_no = 5;
         iv_subAr = [NSMutableArray array];//初期化
@@ -246,17 +247,18 @@ Boolean isSubMainDisplayed = false;
                 //一行のアイコン個数が最大配置個数(=max_icon_no)以下もしくはアイコンの格納数まで。
 //                NSLog(@"x = %d, y = %d", x_no, y_no);
                 CGRect rect_subXY = CGRectMake(
-                                               10 + x_no * (wid_sub + icon_interval),
-                                               275 + y_no * (hei_sub + icon_interval),
-                                               wid_sub,
-                                               hei_sub);
+                                               bt_left + x_no * (bt_size + icon_Xinterval),
+                                               275 + y_no * (bt_size + icon_Yinterval),
+                                               bt_size,
+                                               bt_size);
 //                UIImageView *iv_subXY = [[UIImageView alloc]initWithFrame:rect_subXY];
                 [iv_subAr addObject:[[UIImageView alloc]initWithFrame:rect_subXY]];
                 
                 ((UIImageView *)[iv_subAr objectAtIndex:icon_sub_no]).image = [UIImage imageNamed:[iconAr objectAtIndex:icon_sub_no]];
                 
                 ((UIImageView *)[iv_subAr objectAtIndex:icon_sub_no]).userInteractionEnabled = YES;
-                
+                ((UIImageView *)[iv_subAr objectAtIndex:icon_sub_no]).tag =
+                    x_no + y_no;//[iconAr objectAtIndex:icon_sub_no];=>tagは整数型のみ取り得るので工夫して一意的な数値にする必要あり。。？
                 
                 UITapGestureRecognizer *tap =
                 [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -281,13 +283,12 @@ Boolean isSubMainDisplayed = false;
     count += 0.1;
 //    NSLog(@"time:%f", count);
     //タイマーが有効かどうか
-    NSString *str = [tm isValid] ? @"yes" : @"no";
-    
+//    NSString *str = [tm isValid] ? @"yes" : @"no";
 //    NSLog(@"isValid:%@", str);
     
     
     //アクションアニメーションへの終了
-    if(count >=3.0){
+    if(count >=10.0){
         //３秒経過したらタイマー終了
         [tm invalidate];
         
