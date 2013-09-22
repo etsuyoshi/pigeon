@@ -7,6 +7,7 @@
 //
 
 #import "DispPigeonViewController.h"
+#import "PetClass.h"
 
 @interface DispPigeonViewController ()
 
@@ -49,9 +50,33 @@ Boolean isSubMainDisplayed = false;
     int main_top = 50;
     //メイン画面の大きさの決定
     rect_main = CGRectMake(main_left, main_top, main_width, main_height);//左上座標、幅、高さ
+    iv_main = [[UIImageView alloc]initWithFrame:rect_main];
+    iv_main.userInteractionEnabled = YES;
     
     [self ordinaryAnimationStart];
     
+    
+    /**
+      *ペットクラスのテスト
+    NSLog(@"start init");
+    PetClass *pc = [[PetClass alloc]init];
+    
+    NSLog(@"add image");
+    [pc setPetImage:[NSString stringWithFormat:@"aaa.png"]];
+    NSLog(@"count = %d", [pc getPetImageSum]);
+    for(int i = 0; i < [pc getPetImageSum]; i++){
+        NSLog(@"i = %d, image = %@", i, [pc getPetImage:i]);
+    }
+    
+    NSLog(@"add image");
+    [pc setPetImage:[NSString stringWithFormat:@"bbb.png"]];
+    NSLog(@"count = %d", [pc getPetImageSum]);
+    for(int i = 0; i < [pc getPetImageSum]; i++){
+        NSLog(@"i = %d, image = %@", i, [pc getPetImage:i]);
+    }
+    
+    NSLog(@"finish init");
+    */
 
 }
 
@@ -71,19 +96,37 @@ Boolean isSubMainDisplayed = false;
     //メイン部分
     //サイズ参考：http://ameblo.jp/sakurabishi/entry-11447586307.html
     
-    iv_main = [[UIImageView alloc]initWithFrame:rect_main];
-    iv_main.image = [UIImage imageNamed:@"pengin___.jpg"];
-    [self.view addSubview:iv_main];
     
-    UIImage *im1 = [UIImage imageNamed:@"origin_small4_384.png"];
+//    iv_main.image = [UIImage imageNamed:@"pengin___.jpg"];
+//    [self.view addSubview:iv_main];
+    
+    //個別指定の場合
+//    UIImage *im1 = [UIImage imageNamed:@"origin_small4_384.png"];
 //    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384.png"];=>触ったときの反応：作る必要
-    UIImage *im2 = [UIImage imageNamed:@"origin_small4_motion_384.png"];
+//    UIImage *im2 = [UIImage imageNamed:@"origin_small4_motion_384.png"];
+//    switch case でペットのレベルに応じて画像を変える(引数は配列指定)
+//    NSMutableArray *imageList = [NSArray arrayWithObjects:im1, im2, nil];
+    NSMutableArray *imageList = [NSMutableArray array];
+    for (NSInteger i = 1; i < 5; i++) {
+//        NSLog(@"f%01d.png", i);
+        NSString *imagePath = [NSString stringWithFormat:@"f%01d.png", i];
+        UIImage *img = [UIImage imageNamed:imagePath];
+        [imageList addObject:img];
+    }
     
-    //switch case でペットのレベルに応じて画像を変える(引数は配列指定)
-    NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
-    iv_main.animationImages = ims;
-    iv_main.animationDuration = 1.5;
+    iv_main.animationImages = imageList;
+    iv_main.animationDuration = 2.5;
     iv_main.animationRepeatCount = 0;
+    
+    
+    
+    //ジェスチャーレコナイザーを付与して、タップイベントに備える
+    UITapGestureRecognizer *tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(onTappedMainImage:)];
+    [iv_main addGestureRecognizer:tap];
+    
+    //ビューにメインイメージを貼り付ける
     [self.view addSubview:iv_main];
     
     [iv_main startAnimating];
@@ -136,6 +179,16 @@ Boolean isSubMainDisplayed = false;
     NSLog(@"startAnimating");
 }
 
+//メインイメージをタップした時に起動
+- (void)onTappedMainImage:(UITapGestureRecognizer*)gr{
+    
+    //タップされた位置座標を取得する(左上端からの座標値を取得)
+    CGPoint location = [gr locationInView:iv_main];
+    NSLog(@"tapped main image@[ x = %f, y = %f]", location.x , location.y);
+    
+    
+}
+
 
 //サブメニューをタップした時に起動
 - (void)onTappedSubMenu:(UITapGestureRecognizer*)gr{
@@ -162,11 +215,20 @@ Boolean isSubMainDisplayed = false;
     
     
     //switch case でペットのレベルに応じて画像を変える(引数は配列指定)
-    NSArray *ims = [NSArray arrayWithObjects:im3, im4, im5, im6, nil];
-    iv_main.animationImages = ims;
+    NSArray *imageList = [NSArray arrayWithObjects:im3, im4, im5, im6, nil];
+    iv_main.animationImages = imageList;
     iv_main.animationDuration = 2.5;//1.5秒間アニメーションを実施
     iv_main.animationRepeatCount = 5;
     [self.view addSubview:iv_main];
+    
+    
+    
+    //ジェスチャーレコナイザーを付与して、タップイベントに備える
+    UITapGestureRecognizer *tap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(onTappedMainImage:)];
+    [iv_main addGestureRecognizer:tap];
+    
     
     [iv_main startAnimating];//アクションアニメーション開始
     
@@ -262,6 +324,7 @@ Boolean isSubMainDisplayed = false;
                 ((UIImageView *)[iv_subAr objectAtIndex:icon_sub_no]).tag =
                     x_no + y_no;//[iconAr objectAtIndex:icon_sub_no];=>tagは整数型のみ取り得るので工夫して一意的な数値にする必要あり。。？
                 
+                //ジェスチャーレコナイザーを付与して、タップイベントに備える
                 UITapGestureRecognizer *tap =
                 [[UITapGestureRecognizer alloc] initWithTarget:self
                                                         action:@selector(onTappedSubMenu:)];
