@@ -79,6 +79,7 @@ Boolean isSubMainDisplayed = false;
 //    UIImage *im2 = [UIImage imageNamed:@"delight_small4_384.png"];=>触ったときの反応：作る必要
     UIImage *im2 = [UIImage imageNamed:@"origin_small4_motion_384.png"];
     
+    //switch case でペットのレベルに応じて画像を変える(引数は配列指定)
     NSArray *ims = [NSArray arrayWithObjects:im1, im2, nil];
     iv_main.animationImages = ims;
     iv_main.animationDuration = 1.5;
@@ -154,12 +155,13 @@ Boolean isSubMainDisplayed = false;
     //メイン画面と同じ大きさで別のアニメーションを実施(食べる仕草、運動する仕草等)
 //    UIImageView *iv = [[UIImageView alloc]initWithFrame:rect_main];
     iv_main.image = [UIImage imageNamed:@"slime2_3.png"];
-    [self.view addSubview:iv_main];
     UIImage *im3 = [UIImage imageNamed:@"slime2_3.png"];
     UIImage *im4 = [UIImage imageNamed:@"slime2_jumpPre.png"];
     UIImage *im5 =[UIImage imageNamed:@"slime2_jump.png"];
     UIImage *im6 = [UIImage imageNamed:@"slime2_jumpPre.png"];
     
+    
+    //switch case でペットのレベルに応じて画像を変える(引数は配列指定)
     NSArray *ims = [NSArray arrayWithObjects:im3, im4, im5, im6, nil];
     iv_main.animationImages = ims;
     iv_main.animationDuration = 2.5;//1.5秒間アニメーションを実施
